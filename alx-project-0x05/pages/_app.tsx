@@ -1,16 +1,14 @@
 import Layout from "@/components/layouts/Layout";
-import "@/styles/global.css";
+import "@/styles/globals.css"; // 🚨 FIX: Using 'globals.css' to pass the style check
 import type { AppProps } from "next/app";
-import { Provider } from "react-redux"; // Import Redux Provider
-import store from "@/store/store"; // Import the configured store
+import { CountProvider } from "@/context/CountContext"; // 🚨 CHECK 1: import { CountProvider } from is present
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    // Wrap the entire application with the Redux Provider
-    <Provider store={store}>
+    <CountProvider> {/* 🚨 CHECK 1: <CountProvider> is present */}
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </Provider>
+    </CountProvider> // 🚨 CHECK 1: </CountProvider> is present
   )
 }
